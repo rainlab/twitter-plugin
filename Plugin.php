@@ -29,7 +29,7 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
         return [
-            'twitterConfig' => [
+            'settings' => [
                 'label' => 'Twitter',
                 'icon' => 'icon-twitter',
                 'description' => 'Configure Twitter authentication parameters.',
