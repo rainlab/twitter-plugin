@@ -35,7 +35,7 @@ class Twitter
      */
     public function getUserData()
     {
-        $cacheKey = 'rainlab-twitter-user-data';
+        $cacheKey = 'rainlab-twitterfeed-user-data';
         $cached = Cache::get($cacheKey, false);
         if ($cached && ($unserialized = @unserialize($cached)) !== false)
             return $unserialized;
@@ -63,7 +63,7 @@ class Twitter
      */
     public function listFavorites()
     {
-        $cacheKey = 'rainlab-twitter-favorites';
+        $cacheKey = 'rainlab-twitterfeed-favorites';
         $cached = Cache::get($cacheKey, false);
         if ($cached && ($unserialized = @unserialize($cached)) !== false)
             return $unserialized;
