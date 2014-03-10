@@ -1,4 +1,4 @@
-<?php namespace RainLab\Twitter\Models;
+<?php namespace RainLab\TwitterFeed\Models;
 
 use October\Rain\Database\Model;
 
@@ -13,7 +13,7 @@ class Settings extends Model
 {
     public $implement = ['System.Behaviors.SettingsModel'];
 
-    public $settingsCode = 'rainlab_twitter_settings';
+    public $settingsCode = 'rainlab_twitterfeed_settings';
 
     public $settingsFields = 'fields.yaml';
 

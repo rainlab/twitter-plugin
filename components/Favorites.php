@@ -1,8 +1,8 @@
-<?php namespace RainLab\Twitter\Components;
+<?php namespace RainLab\TwitterFeed\Components;
 
 use System\Classes\ApplicationException;
 use Cms\Classes\ComponentBase;
-use RainLab\Twitter\Classes\Twitter;
+use RainLab\TwitterFeed\Classes\Twitter;
 use Cache;
 
 class Favorites extends ComponentBase
@@ -36,6 +36,9 @@ class Favorites extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the favourite tweet feed.
+     */
     public function favoriteList()
     {
         $favorites = Twitter::instance()->listFavorites();
@@ -53,6 +56,6 @@ class Favorites extends ComponentBase
         foreach ($randomKeys as $key)
             $result[] = $favorites[$key];
 
-        return $result; 
+        return $result;
     }
 }

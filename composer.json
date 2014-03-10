@@ -1,6 +1,6 @@
 {
-    "name": "rainlab/twitter",
-    "description": "Twitter integration plugin for OctoberCMS",
+    "name": "rainlab/twitterfeed",
+    "description": "Twitter Feed integration plugin for OctoberCMS",
     "homepage": "http://octobercms.com",
     "keywords": ["october", "cms", "rainlab", "twitter"],
     "authors": [

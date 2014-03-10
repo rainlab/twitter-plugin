@@ -1,4 +1,4 @@
-<?php namespace RainLab\Twitter;
+<?php namespace RainLab\TwitterFeed;
 
 /**
  * The plugin.php file (called the plugin initialization script) defines the plugin information class.
@@ -22,7 +22,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-           '\RainLab\Twitter\Components\Favorites' => 'twitterFavorites'
+           '\RainLab\TwitterFeed\Components\Favorites' => 'twitterFavorites'
         ];
     }
 
@@ -33,7 +33,7 @@ class Plugin extends PluginBase
                 'label' => 'Twitter',
                 'icon' => 'icon-twitter',
                 'description' => 'Configure Twitter authentication parameters.',
-                'class' => 'RainLab\Twitter\Models\Settings',
+                'class' => 'RainLab\TwitterFeed\Models\Settings',
                 'order' => 210
             ]
         ];

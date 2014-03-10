@@ -1,9 +1,9 @@
-<?php namespace RainLab\Twitter\Classes;
+<?php namespace RainLab\TwitterFeed\Classes;
 
-use RainLab\Twitter\Models\Settings;
-use System\Classes\ApplicationException;
 use Cache;
 use tmhOAuth;
+use RainLab\TwitterFeed\Models\Settings;
+use System\Classes\ApplicationException;
 
 class Twitter
 {
