@@ -11,7 +11,7 @@ class Favorites extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'Twitter favorite messages',
+            'name'        => 'Twitter favorite messages',
             'description' => 'Outputs a list of Twitter favorite messages.'
         ];
     }
@@ -20,18 +20,18 @@ class Favorites extends ComponentBase
     {
         return [
             'count' => [
-                'description' => 'Number of messages to display',
-                'title' => 'Count',
-                'default' => 10,
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$',
-                'validationMessage'=>'The Count value is required and should be integer.'
+                'description'       => 'Number of messages to display',
+                'title'             => 'Count',
+                'default'           => 10,
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'The Count value is required and should be integer.'
             ],
             'random' => [
                 'description' => 'Display messages in random order',
-                'title' => 'Random',
-                'default' => false,
-                'type'=>'checkbox'
+                'title'       => 'Random',
+                'default'     => false,
+                'type'        => 'checkbox'
             ]
         ];
     }

@@ -12,10 +12,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'Twitter',
+            'name'        => 'Twitter',
             'description' => 'Provides the Twitter integration.',
-            'author' => 'Alexey Bobkov, Samuel Georges',
-            'icon' => 'icon-twitter'
+            'author'      => 'Alexey Bobkov, Samuel Georges',
+            'icon'        => 'icon-twitter'
         ];
     }
 
@@ -30,11 +30,11 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label' => 'Twitter',
-                'icon' => 'icon-twitter',
+                'label'       => 'Twitter',
+                'icon'        => 'icon-twitter',
                 'description' => 'Configure Twitter authentication parameters.',
-                'class' => 'RainLab\TwitterFeed\Models\Settings',
-                'order' => 210
+                'class'       => 'RainLab\TwitterFeed\Models\Settings',
+                'order'       => 210
             ]
         ];
     }
