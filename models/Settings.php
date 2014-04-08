@@ -21,9 +21,9 @@ class Settings extends Model
      * Validation rules
      */
     public $rules = [
-        'api_key' => 'required',
-        'api_secret' => 'required',
-        'access_token' => 'required',
+        'api_key'             => 'required',
+        'api_secret'          => 'required',
+        'access_token'        => 'required',
         'access_token_secret' => 'required'
     ];
 }

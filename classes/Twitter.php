@@ -21,10 +21,10 @@ class Twitter
             throw new ApplicationException('Twitter API access is not configured. Please configure it on the System / Settings / Twitter page.');
 
         $this->client = new tmhOAuth([
-            'consumer_key' => $settings->api_key,
-            'consumer_secret' => $settings->api_secret,
-            'token' => $settings->access_token,
-            'secret' => $settings->access_token_secret,
+            'consumer_key'        => $settings->api_key,
+            'consumer_secret'     => $settings->api_secret,
+            'token'               => $settings->access_token,
+            'secret'              => $settings->access_token_secret,
             'curl_ssl_verifypeer' => false
         ]);
     }
@@ -40,10 +40,9 @@ class Twitter
         if ($cached && ($unserialized = @unserialize($cached)) !== false)
             return $unserialized;
 
-        $code = $this->client->user_request(array(
-                'url' => $this->client->url('1.1/account/verify_credentials')
-            )
-        );
+        $code = $this->client->user_request([
+            'url' => $this->client->url('1.1/account/verify_credentials')
+        ]);
 
         if ($code <> 200) {
             if ($code == 429)
@@ -73,11 +72,11 @@ class Twitter
         $userData = $obj->getUserData();
 
         $code = $obj->client->user_request(array(
-            'url' => $obj->client->url('1.1/favorites/list'),
+            'url'    => $obj->client->url('1.1/favorites/list'),
             'params' => array(
                 'include_entities' => true,
-                'count' => 200,
-                'screen_name' => $userData['screen_name']
+                'count'            => 200,
+                'screen_name'      => $userData['screen_name']
             )
         ));
 
