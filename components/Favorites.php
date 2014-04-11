@@ -36,10 +36,15 @@ class Favorites extends ComponentBase
         ];
     }
 
+    public function onRun()
+    {
+        $this->page['favorites'] = $this->all();
+    }
+
     /**
      * Returns the favourite tweet feed.
      */
-    public function favoriteList()
+    public function all()
     {
         $favorites = Twitter::instance()->listFavorites();
 
