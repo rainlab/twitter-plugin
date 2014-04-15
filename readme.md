@@ -28,7 +28,7 @@ The plugin includes a component Favorites that lets you to output your favorite 
 You can manage the number of favorite messages with the component settings. If you don't like the default favorite messages markup, don't use the component tag and just write your own code:
 
 ```php
-{% for favorite in twitterFavorites.favoriteList %}
+{% for favorite in twitterFavorites.all %}
     <blockquote>“{{ favorite.text_processed|raw }}”</blockquote>
 
     <p class="author">
