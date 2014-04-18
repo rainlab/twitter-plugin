@@ -34,7 +34,7 @@ You can manage the number of favorite messages with the component settings. If y
     <p class="author">
         <img src="{{ favorite.user.profile_image_url_https }}"/>
         <span>{{ favorite.user.name }}</span>
-        <a href="#" rel="author"><a href="{{ 'http://twitter.com/'~favorite.user.screen_name }}">@{{ favorite.user.screen_name }}</a></a>
+        <a href="{{ 'http://twitter.com/'~favorite.user.screen_name }}">@{{ favorite.user.screen_name }}</a>
     </p>
 {% endfor %}
 ```
