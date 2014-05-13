@@ -7,7 +7,6 @@ use Cache;
 
 class Favorites extends ComponentBase
 {
-
     public function componentDetails()
     {
         return [
@@ -47,7 +46,6 @@ class Favorites extends ComponentBase
     public function all()
     {
         $favorites = Twitter::instance()->listFavorites();
-
         if (!$this->property('random'))
             return array_slice($favorites, 0, $this->property('count'));
 
