@@ -2,7 +2,7 @@
 
 This plugin adds Twitter integration features to the [OctoberCMS](http://octobercms.com).
 
-This plugins comes with four built-in components. These are:
+This plugin allows you to add the following Components to your pages and layouts:
 
 - A Twitter Favourites list*
 - A Twitter Follow Button
