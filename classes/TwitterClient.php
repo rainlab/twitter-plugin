@@ -1,11 +1,11 @@
-<?php namespace RainLab\TwitterFeed\Classes;
+<?php namespace RainLab\Twitter\Classes;
 
 use Cache;
 use tmhOAuth;
-use RainLab\TwitterFeed\Models\Settings;
+use RainLab\Twitter\Models\Settings;
 use System\Classes\ApplicationException;
 
-class Twitter
+class TwitterClient
 {
     use \October\Rain\Support\Traits\Singleton;
 
@@ -35,7 +35,7 @@ class Twitter
      */
     public function getUserData()
     {
-        $cacheKey = 'rainlab-twitterfeed-user-data';
+        $cacheKey = 'rainlab-twitter-user-data';
         $cached = Cache::get($cacheKey, false);
         if ($cached && ($unserialized = @unserialize($cached)) !== false)
             return $unserialized;
@@ -62,12 +62,12 @@ class Twitter
      */
     public function listFavorites()
     {
-        $cacheKey = 'rainlab-twitterfeed-favorites';
+        $cacheKey = 'rainlab-twitter-favorites';
         $cached = Cache::get($cacheKey, false);
         if ($cached && ($unserialized = @unserialize($cached)) !== false)
             return $unserialized;
 
-        $obj = Twitter::instance();
+        $obj = static::instance();
 
         $userData = $obj->getUserData();
 

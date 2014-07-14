@@ -2,9 +2,19 @@
 
 This plugin adds Twitter integration features to the [OctoberCMS](http://octobercms.com).
 
+This plugins comes with four built-in components. These are:
+
+- A Twitter Favourites list*
+- A Twitter Follow Button
+- A Twitter Tweet Button
+- A Twitter Embedded Tweet area
+- A Twitter Embedded Timeline area
+
+* Requires OAuth security
+
 ## Configuring
 
-Twitter uses the OAuth security. In order to use the plugin you need create a Twitter API application.
+Some features of Twitter use OAuth security. In order to use the plugin you need create a Twitter API application.
 
 1. Go to the [Twitter Developers website](https://apps.twitter.com/) to create a new application. You must be signed into Twitter in order to access the page.
 2. Click the Create New App button.
