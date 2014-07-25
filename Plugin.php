@@ -38,7 +38,7 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-twitter',
                 'description' => 'Configure Twitter authentication parameters.',
                 'class'       => 'RainLab\Twitter\Models\Settings',
-                'order'       => 210
+                'order'       => 600
             ]
         ];
     }
