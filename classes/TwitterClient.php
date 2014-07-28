@@ -54,6 +54,8 @@ class TwitterClient
         $result = json_decode($this->client->response['response'], true);
 
         Cache::put($cacheKey, serialize($result), 2);
+
+        return $result;
     }
 
     /**
