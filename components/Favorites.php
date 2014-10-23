@@ -4,6 +4,7 @@ use Cache;
 use Cms\Classes\ComponentBase;
 use RainLab\Twitter\Classes\TwitterClient;
 use System\Classes\ApplicationException;
+use Exception;
 
 class Favorites extends ComponentBase
 {
@@ -45,7 +46,12 @@ class Favorites extends ComponentBase
      */
     public function all()
     {
-        $favorites = TwitterClient::instance()->listFavorites();
+        try {
+            $favorites = TwitterClient::instance()->listFavorites();
+        } catch (Exception $ex) {
+            return [];
+        }
+
         if (!$this->property('random'))
             return array_slice($favorites, 0, $this->property('count'));
 
@@ -55,9 +61,9 @@ class Favorites extends ComponentBase
             $randomKeys = [$randomKeys];
 
         $result = [];
-
-        foreach ($randomKeys as $key)
+        foreach ($randomKeys as $key) {
             $result[] = $favorites[$key];
+        }
 
         return $result;
     }
