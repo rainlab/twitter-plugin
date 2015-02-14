@@ -3,7 +3,7 @@
 use Cache;
 use Cms\Classes\ComponentBase;
 use RainLab\Twitter\Classes\TwitterClient;
-use System\Classes\ApplicationException;
+use ApplicationException;
 use Exception;
 
 class Favorites extends ComponentBase

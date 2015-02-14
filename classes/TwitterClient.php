@@ -3,7 +3,7 @@
 use Cache;
 use tmhOAuth;
 use RainLab\Twitter\Models\Settings;
-use System\Classes\ApplicationException;
+use ApplicationException;
 
 class TwitterClient
 {

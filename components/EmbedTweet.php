@@ -1,7 +1,6 @@
 <?php namespace RainLab\Twitter\Components;
 
 use Cms\Classes\ComponentBase;
-use HTML;
 use Http;
 
 class EmbedTweet extends ComponentBase

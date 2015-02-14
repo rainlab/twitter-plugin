@@ -1,6 +1,6 @@
 <?php namespace RainLab\Twitter\Components;
 
-use HTML;
+use Html;
 use Cms\Classes\ComponentBase;
 
 class TweetButton extends ComponentBase
@@ -134,7 +134,7 @@ class TweetButton extends ComponentBase
             $prefixAttributes['data-'.$key] = $value;
         }
 
-        return HTML::attributes($prefixAttributes);
+        return Html::attributes($prefixAttributes);
     }
 
 }
