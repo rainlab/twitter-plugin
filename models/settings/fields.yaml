@@ -1,4 +1,8 @@
 fields:
+  content:
+    type: partial
+    path: ~/plugins/rainlab/twitter/models/settings/instructions.htm
+
   api_key:
     span: left
     label: API key
