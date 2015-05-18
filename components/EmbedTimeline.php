@@ -130,6 +130,7 @@ class EmbedTimeline extends ComponentBase
         array_walk($attributes, function(&$value, $key) {
             switch ($value) {
                 case '1':
+                    if($key != 'tweet-limit')
                     $value = 'true';
                     break;
 
