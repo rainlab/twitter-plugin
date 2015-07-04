@@ -76,7 +76,7 @@ class EmbedTimeline extends ComponentBase
                  'type'              => 'dropdown',
                  'options'           => [
                     'light' => 'light',
-                    'dark' => 'dark'
+                    'dark'  => 'dark'
                  ],
                  'group'             => 'Display',
             ],
@@ -128,18 +128,15 @@ class EmbedTimeline extends ComponentBase
          * Convert booleans
          */
         array_walk($attributes, function(&$value, $key) {
+            if ($key == 'tweet-limit') return;
+
             switch ($value) {
                 case '1':
-                    if($key != 'tweet-limit')
                     $value = 'true';
                     break;
 
                 case '0':
                     $value = 'false';
-                    break;
-
-                default:
-                    $value = $value;
                     break;
             }
         });

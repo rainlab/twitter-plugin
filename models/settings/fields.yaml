@@ -1,20 +1,20 @@
 fields:
-  content:
-    type: partial
-    path: ~/plugins/rainlab/twitter/models/settings/instructions.htm
+    content:
+        type: partial
+        path: ~/plugins/rainlab/twitter/models/settings/instructions.htm
 
-  api_key:
-    span: left
-    label: API key
+    api_key:
+        span: left
+        label: API key
 
-  api_secret:
-    span: right
-    label: API secret
+    api_secret:
+        span: right
+        label: API secret
 
-  access_token:
-    span: left
-    label: Access token
+    access_token:
+        span: left
+        label: Access token
 
-  access_token_secret:
-    span: right
-    label: Access token secret
+    access_token_secret:
+        span: right
+        label: Access token secret
