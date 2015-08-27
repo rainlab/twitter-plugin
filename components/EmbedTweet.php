@@ -87,8 +87,21 @@ class EmbedTweet extends ComponentBase
         $json = json_decode(Http::get('https://api.twitter.com/1/statuses/oembed.json', function($http){
             $http->data($this->getProperties());
         })->body);
+        
+        if (isset($json->html)) 
+        {
+            $html = $json->html;
+        } 
+        else if (isset($json->errors))
+        {
+            $html = $json->errors[0]->message;
+        }
+        else
+        {
+            $html = "Sorry tweets cant be loaded at the moment";
+        }
 
-        return $json->html;
+        return $html;
     }
 
 }
