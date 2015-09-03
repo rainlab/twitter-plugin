@@ -58,6 +58,48 @@ class TwitterClient
         return $result;
     }
 
+    public function getLatestTweet($params)
+    {
+        $cacheKey = 'rainlab-twitter-latest';
+        $cached = Cache::get($cacheKey, false);
+
+        if ($cached && ($unserialized = @unserialize($cached)) !== false)
+        {
+            return $unserialized;
+        }
+
+        $obj = static::instance();
+
+        $userData = $obj->getUserData();
+
+        $code = $obj->client->user_request(array(
+            'url'    => $obj->client->url('1.1/statuses/user_timeline'),
+            'params' => array(
+                'count'            => $params["tweet-limit"],
+                'screen_name'      => $userData['screen_name'],
+                'exclude_replies'  => (!isset($params["exclude-replies"]) &&
+                                        $params["exclude-replies"] == 'No' ? false : true) 
+            )
+        ));
+
+        if ($code <> 200)
+        {
+             throw new ApplicationException('Error requesting Twitter API: '.$obj->client->response['error']);
+        }
+           
+        $result = json_decode($obj->client->response['response'], true);
+        foreach ($result as &$message) 
+        {
+            $text = $message['text'];
+            $text = preg_replace('/\@\w+/', '<span class="name">$0</span>', $text);
+            $text = preg_replace('/\#\w+/', '<span class="tag">$0</span>', $text);
+            $message['text_processed'] = $obj->urlsToLinks($text);
+        }
+
+        Cache::put($cacheKey, serialize($result), 2);
+        return $result;
+    }
+
     /**
      * Returns the 200 most recent Tweets favorited by the authenticating user.
      * @see https://dev.twitter.com/docs/api/1.1/get/favorites/list
