@@ -21,7 +21,7 @@ class EmbedTweet extends ComponentBase
             'id' => [
                  'title'             => 'Tweet ID',
                  'description'       => 'The Tweet/status ID to return embed code for.',
-                 'type'              => 'string',
+                 'type'              => 'string'
             ],
             'hide_media' => [
                  'title'             => 'Hide media',
@@ -41,7 +41,7 @@ class EmbedTweet extends ComponentBase
                  'type'              => 'string',
                  'validationPattern' => '^\d*$',
                  'validationMessage' => 'The maximum width can only contain numbers.',
-                'group'              => 'Display',
+                'group'              => 'Display'
             ],
             'align' => [
                  'title'             => 'Align',
@@ -49,25 +49,25 @@ class EmbedTweet extends ComponentBase
                  'default'           => 'none',
                  'type'              => 'dropdown',
                  'options'           => [
-                    'left'   => 'left',
-                    'rigth'  => 'rigth',
-                    'center' => 'center',
-                    'none'   => 'none',
+                    'left'           => 'left',
+                    'rigth'          => 'rigth',
+                    'center'         => 'center',
+                    'none'           => 'none'
                  ],
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'related' => [
                  'title'             => 'Recommended accounts',
                  'description'       => 'Related accounts.',
                  'type'              => 'string',
-                 'group'             => 'Extra options',
+                 'group'             => 'Extra options'
             ],
             'lang' => [
-                'title'             => 'Language',
-                'type'              => 'dropdown',
-                'default'           => 'en',
-                'placeholder'       => 'Select language',
-                'group'             => 'Extra options',
+                'title'              => 'Language',
+                'type'               => 'dropdown',
+                'default'            => 'en',
+                'placeholder'        => 'Select language',
+                'group'              => 'Extra options'
             ]
         ];
     }
@@ -84,24 +84,20 @@ class EmbedTweet extends ComponentBase
 
     protected function loadTweetContent()
     {
-        $json = json_decode(Http::get('https://api.twitter.com/1/statuses/oembed.json', function($http){
+        $json = json_decode(Http::get('https://api.twitter.com/1/statuses/oembed.json', function($http) {
             $http->data($this->getProperties());
         })->body);
         
-        if (isset($json->html)) 
-        {
+        if (isset($json->html)) {
             $html = $json->html;
         } 
-        else if (isset($json->errors))
-        {
+        else if (isset($json->errors)) {
             $html = $json->errors[0]->message;
         }
-        else
-        {
-            $html = "Sorry tweets cant be loaded at the moment";
+        else {
+            $html = 'Sorry tweets cant be loaded at the moment';
         }
 
         return $html;
     }
-
 }

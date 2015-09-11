@@ -22,7 +22,7 @@ class FollowButton extends ComponentBase
             'user' => [
                  'title'             => 'User to follow',
                  'description'       => 'The username of the user to follow.',
-                 'type'              => 'string',
+                 'type'              => 'string'
             ],
             'size' => [
                  'title'             => 'Button Size',
@@ -30,10 +30,10 @@ class FollowButton extends ComponentBase
                  'default'           => 'medium',
                  'type'              => 'dropdown',
                  'options'           => [
-                    'medium' => 'medium',
-                    'large' => 'large'
+                    'medium'         => 'medium',
+                    'large'          => 'large'
                  ],
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'width' => [
                  'title'             => 'Width',
@@ -41,7 +41,7 @@ class FollowButton extends ComponentBase
                  'type'              => 'string',
                  'validationPattern' => '^(\d+(px|%))?$',
                  'validationMessage' => 'The width must be specified in either pixels or percentage.',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'align' => [
                  'title'             => 'Alignment',
@@ -49,38 +49,38 @@ class FollowButton extends ComponentBase
                  'default'           => 'left',
                  'type'              => 'dropdown',
                  'options'           => [
-                    'left' => 'left',
-                    'right' => 'right'
+                    'left'           => 'left',
+                    'right'          => 'right'
                  ],
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'show-count' => [
                  'title'             => 'Followers count display',
                  'description'       => "By default, the User's followers count is not displayed with the Follow Button.",
                  'default'           => 0,
                  'type'              => 'checkbox',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'show-screen-name' => [
                  'title'             => 'Show Screen Name',
                  'description'       => "The user's screen name shows up by default, but you can opt not to show the screen name in the button.",
                  'default'           => 1,
                  'type'              => 'checkbox',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'dnt' => [
                  'title'             => 'Tailoring opt-out',
                  'description'       => 'Twitter buttons on your site can help us tailor content and suggestions for Twitter users. If you want to opt-out of this feature, check this option.',
                  'default'           => 0,
                  'type'              => 'checkbox',
-                 'group'             => 'Extra options',
+                 'group'             => 'Extra options'
             ],
             'lang' => [
                 'title'             => 'Language',
                 'type'              => 'dropdown',
                 'default'           => 'en',
                 'placeholder'       => 'Select language',
-                'group'             => 'Extra options',
+                'group'             => 'Extra options'
             ]
         ];
     }
@@ -123,11 +123,11 @@ class FollowButton extends ComponentBase
          * Prefix attributes with data-
          */
         $prefixAttributes = [];
+
         foreach ($attributes as $key => $value) {
             $prefixAttributes['data-'.$key] = $value;
         }
 
         return Html::attributes($prefixAttributes);
     }
-
 }
