@@ -48,19 +48,23 @@ class Favorites extends ComponentBase
     {
         try {
             $favorites = TwitterClient::instance()->listFavorites();
-        } catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
             return [];
         }
 
-        if (!$this->property('random'))
+        if (!$this->property('random')) {
             return array_slice($favorites, 0, $this->property('count'));
+        }
 
         $randomKeys = array_rand($favorites, $this->property('count'));
 
-        if (!is_array($randomKeys))
+        if (!is_array($randomKeys)) {
             $randomKeys = [$randomKeys];
+        }
 
         $result = [];
+
         foreach ($randomKeys as $key) {
             $result[] = $favorites[$key];
         }

@@ -17,8 +17,10 @@ class TwitterClient
     protected function init()
     {
         $settings = Settings::instance();
-        if (!strlen($settings->api_key))
+
+        if (!strlen($settings->api_key)) {
             throw new ApplicationException('Twitter API access is not configured. Please configure it on the System / Settings / Twitter page.');
+        }
 
         $this->client = new tmhOAuth([
             'consumer_key'        => $settings->api_key,
@@ -37,16 +39,19 @@ class TwitterClient
     {
         $cacheKey = 'rainlab-twitter-user-data';
         $cached = Cache::get($cacheKey, false);
-        if ($cached && ($unserialized = @unserialize($cached)) !== false)
+
+        if ($cached && ($unserialized = @unserialize($cached)) !== false) {
             return $unserialized;
+        }
 
         $code = $this->client->user_request([
             'url' => $this->client->url('1.1/account/verify_credentials')
         ]);
 
         if ($code <> 200) {
-            if ($code == 429)
+            if ($code == 429) {
                 throw new ApplicationException('Exceeded Twitter API rate limit');
+            }
 
             throw new ApplicationException('Error requesting Twitter API: '.$this->client->response['error']);
         }
@@ -66,26 +71,30 @@ class TwitterClient
     {
         $cacheKey = 'rainlab-twitter-favorites';
         $cached = Cache::get($cacheKey, false);
-        if ($cached && ($unserialized = @unserialize($cached)) !== false)
+
+        if ($cached && ($unserialized = @unserialize($cached)) !== false) {
             return $unserialized;
+        }
 
         $obj = static::instance();
 
         $userData = $obj->getUserData();
 
-        $code = $obj->client->user_request(array(
+        $code = $obj->client->user_request([
             'url'    => $obj->client->url('1.1/favorites/list'),
-            'params' => array(
+            'params' => [
                 'include_entities' => true,
                 'count'            => 200,
                 'screen_name'      => $userData['screen_name']
-            )
-        ));
+            ]
+        ]);
 
-        if ($code <> 200)
+        if ($code <> 200) {
             throw new ApplicationException('Error requesting Twitter API: '.$obj->client->response['error']);
+        }
 
         $result = json_decode($obj->client->response['response'], true);
+
         foreach ($result as &$message) {
             $text = $message['text'];
             $text = preg_replace('/\@\w+/', '<span class="name">$0</span>', $text);
@@ -94,6 +103,7 @@ class TwitterClient
         }
 
         Cache::put($cacheKey, serialize($result), 2);
+
         return $result;
     }
 

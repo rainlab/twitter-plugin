@@ -39,17 +39,17 @@ class EmbedTimeline extends ComponentBase
                  'default'           => 'polite',
                  'type'              => 'dropdown',
                  'options'           => [
-                    'polite' => 'polite',
-                    'assertive' => 'assertive'
+                    'polite'         => 'polite',
+                    'assertive'      => 'assertive'
                  ],
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'chrome' => [
                  'title'             => 'Chrome',
                  'description'       => 'Control the widget layout and chrome. Use a space-separated set of the following options: [noheader, nofooter, noborders, noscrollbar, transparent]',
                  'default'           => 'nofooter transparent',
                  'type'              => 'string',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'width' => [
                  'title'             => 'Width',
@@ -58,7 +58,7 @@ class EmbedTimeline extends ComponentBase
                  'default'           => 520,
                  'validationPattern' => '^\d+$',
                  'validationMessage' => 'The width attribute can only contain numbers.',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'height' => [
                  'title'             => 'Height',
@@ -67,7 +67,7 @@ class EmbedTimeline extends ComponentBase
                  'default'           => 600,
                  'validationPattern' => '^\d+$',
                  'validationMessage' => 'The height attribute can only contain numbers.',
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'theme' => [
                  'title'             => 'Theme',
@@ -75,10 +75,10 @@ class EmbedTimeline extends ComponentBase
                  'default'           => 'light',
                  'type'              => 'dropdown',
                  'options'           => [
-                    'light' => 'light',
-                    'dark'  => 'dark'
+                    'light'          => 'light',
+                    'dark'           => 'dark'
                  ],
-                 'group'             => 'Display',
+                 'group'             => 'Display'
             ],
             'border-color' => [
                  'title'             => 'Border color',
@@ -91,21 +91,21 @@ class EmbedTimeline extends ComponentBase
                  'title'             => 'Recommended accounts',
                  'description'       => 'Related accounts.',
                  'type'              => 'string',
-                 'group'             => 'Extra options',
+                 'group'             => 'Extra options'
             ],
             'dnt' => [
                  'title'             => 'Tailoring opt-out',
                  'description'       => 'Twitter buttons on your site can help us tailor content and suggestions for Twitter users. If you want to opt-out of this feature, check this option.',
                  'default'           => 0,
                  'type'              => 'checkbox',
-                 'group'             => 'Extra options',
+                 'group'             => 'Extra options'
             ],
             'lang' => [
-                'title'             => 'Language',
-                'type'              => 'dropdown',
-                'default'           => 'en',
-                'placeholder'       => 'Select language',
-                'group'             => 'Extra options',
+                'title'              => 'Language',
+                'type'               => 'dropdown',
+                'default'            => 'en',
+                'placeholder'        => 'Select language',
+                'group'              => 'Extra options'
             ]
         ];
     }
@@ -128,7 +128,9 @@ class EmbedTimeline extends ComponentBase
          * Convert booleans
          */
         array_walk($attributes, function(&$value, $key) {
-            if ($key == 'tweet-limit') return;
+            if ($key == 'tweet-limit') {
+                return;
+            }
 
             switch ($value) {
                 case '1':
@@ -145,6 +147,7 @@ class EmbedTimeline extends ComponentBase
          * Prefix attributes with data-
          */
         $prefixAttributes = [];
+
         foreach ($attributes as $key => $value) {
             $prefixAttributes['data-'.$key] = $value;
         }
