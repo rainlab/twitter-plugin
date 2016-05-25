@@ -1,0 +1,7 @@
+<ul>
+    {% for tweet in tweets %}
+        <li>
+            <p class="text">{{ tweet.text_processed|raw }}</p>
+        </li>
+    {% endfor %}
+</ul>

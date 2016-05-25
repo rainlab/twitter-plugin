@@ -27,6 +27,7 @@ class Plugin extends PluginBase
             'RainLab\Twitter\Components\TweetButton'      => 'tweetButton',
             'RainLab\Twitter\Components\EmbedTweet'       => 'embedTweet',
             'RainLab\Twitter\Components\EmbedTimeline'    => 'embedTimeline',
+            'RainLab\Twitter\Components\LatestTweet'      => 'latestTweet'
         ];
     }
 
