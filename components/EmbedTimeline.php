@@ -1,7 +1,7 @@
 <?php namespace RainLab\Twitter\Components;
 
+use Html;
 use Cms\Classes\ComponentBase;
-use HTML;
 
 class EmbedTimeline extends ComponentBase
 {
@@ -110,7 +110,7 @@ class EmbedTimeline extends ComponentBase
         ];
     }
 
-    protected function getLangOptions()
+    public function getLangOptions()
     {
         return json_decode(file_get_contents(__DIR__.'/../data/languages.json'), true);
     }
@@ -149,6 +149,6 @@ class EmbedTimeline extends ComponentBase
             $prefixAttributes['data-'.$key] = $value;
         }
 
-        return HTML::attributes($prefixAttributes);
+        return Html::attributes($prefixAttributes);
     }
 }

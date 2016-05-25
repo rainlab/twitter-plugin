@@ -1,3 +1,4 @@
 1.0.1: Initialize plugin.
 1.0.2: Adds Tweet Button, Follow Button, Embed Tweet and Embed Timeline components.
 1.0.3: Minor improvements to the code.
+1.0.4: Adds a new latest tweet component.
