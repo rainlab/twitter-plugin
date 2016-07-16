@@ -1,5 +1,5 @@
 {
-    "name": "rainlab/twitter",
+    "name": "rainlab/twitter-plugin",
     "type": "october-plugin",
     "description": "Twitter integration plugin for OctoberCMS",
     "homepage": "http://octobercms.com",
