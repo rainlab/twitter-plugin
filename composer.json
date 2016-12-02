@@ -1,5 +1,6 @@
 {
-    "name": "rainlab/twitter",
+    "name": "rainlab/twitter-plugin",
+    "type": "october-plugin",
     "description": "Twitter integration plugin for OctoberCMS",
     "homepage": "http://octobercms.com",
     "keywords": ["october", "cms", "rainlab", "twitter"],
@@ -15,6 +16,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "themattharris/tmhoauth": "0.8.3"
-    }
+        "themattharris/tmhoauth": "0.8.3",
+        "composer/installers": "~1.0"
+    },
+    "minimum-stability": "dev"
 }
