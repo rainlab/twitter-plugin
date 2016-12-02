@@ -85,7 +85,7 @@ class FollowButton extends ComponentBase
         ];
     }
 
-    protected function getLangOptions()
+    public function getLangOptions()
     {
         return json_decode(file_get_contents(__DIR__.'/../data/languages.json'), true);
     }
