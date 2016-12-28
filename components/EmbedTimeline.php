@@ -6,7 +6,8 @@ use Cms\Classes\ComponentBase;
 class EmbedTimeline extends ComponentBase
 {
     public $timelineAttributes;
-
+	public $timelineURI;
+	
     public function componentDetails()
     {
         return [
@@ -18,12 +19,10 @@ class EmbedTimeline extends ComponentBase
     public function defineProperties()
     {
         return [
-            'widget-id' => [
-                 'title'             => 'Widget ID',
-                 'description'       => 'To create a timeline you must be signed in to twitter.com and visit the widgets section [https://twitter.com/settings/widgets] of your settings page.',
+            'timeline' => [
+                 'title'             => 'Timeline',
+                 'description'       => 'The timeline to show starting with the username. For example "TwitterDev" for the TwitterDev timeline. "TwitterDev/likes" for likes. "TwitterDev/lists/national-parks" for the national-parks list.',
                  'type'              => 'string',
-                 'validationPattern' => '^\d+$',
-                 'validationMessage' => 'The widget ID can only contain digits and is required.'
             ],
             'tweet-limit' => [
                  'title'             => 'Tweet limit',
@@ -118,12 +117,25 @@ class EmbedTimeline extends ComponentBase
     public function onRun()
     {
         $this->timelineAttributes = $this->page['timelineAttributes'] = $this->loadTimelineAttributes();
+        $this->timelineURI = $this->page['timelineURI'] = $this->property('timeline');
     }
 
     protected function loadTimelineAttributes()
     {
         $attributes = $this->getProperties();
 
+		// the widget-id is no longer used, so we
+		// do not want to include it if we have specified a timeline
+		if(array_key_exists('timeline', $attributes) && array_key_exists('widget-id', $attributes)) {
+			unset($attributes['widget-id']);
+		}
+		
+		// the timeline is not an attribute we want to add, 
+		// so we do not include it in the attributes
+		if(array_key_exists('timeline', $attributes)) {
+			unset($attributes['timeline']);
+		}
+		
         /*
          * Convert booleans
          */
