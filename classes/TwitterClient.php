@@ -4,6 +4,7 @@ use Cache;
 use tmhOAuth;
 use RainLab\Twitter\Models\Settings;
 use ApplicationException;
+use Carbon\Carbon;
 
 class TwitterClient
 {
@@ -78,7 +79,8 @@ class TwitterClient
                 'count'            => $params["tweet-limit"],
                 'screen_name'      => $userData['screen_name'],
                 'exclude_replies'  => (!isset($params["exclude-replies"]) &&
-                                        $params["exclude-replies"] == 'No' ? false : true) 
+                                        $params["exclude-replies"] == 'No' ? false : true),
+                'cache-duration'  => (!isset($params["cache-duration"]) ? 10 : $params["cache-duration"]) 
             )
         ));
 
@@ -95,8 +97,10 @@ class TwitterClient
             $text = preg_replace('/\#\w+/', '<span class="tag">$0</span>', $text);
             $message['text_processed'] = $obj->urlsToLinks($text);
         }
-
-        Cache::put($cacheKey, serialize($result), 2);
+		
+		$expiresAt = Carbon::now()->addMinutes($params["cache-duration"]);
+		
+        Cache::put($cacheKey, serialize($result), $expiresAt);
         return $result;
     }
 

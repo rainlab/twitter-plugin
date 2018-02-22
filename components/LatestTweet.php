@@ -32,6 +32,14 @@ class LatestTweet extends ComponentBase
                  'type'              => 'dropdown',
                  'default'           => "No",
                  'options'           => ["Yes", "No"]
+            ],
+			'cache-duration' => [
+                 'title'             => 'Cache Duration in Minutes',
+                 'description'       => 'Cache Duration of Twitter Feed calls in minutes',
+                 'type'              => 'string',
+                 'default'           => 10,
+                 'validationPattern' => '^[1-9][0-9]*$',
+                 'validationMessage' => 'The cache duration limit attribute must be an integer and above 0.'
             ]
         ];
     }
@@ -42,7 +50,8 @@ class LatestTweet extends ComponentBase
             $latestTweet = TwitterClient::instance()
                                         ->getLatestTweet([
                                             "tweet-limit" => $this->property('tweet-limit'),
-                                            "exclude-replies" => $this->property('exclude-replies')
+                                            "exclude-replies" => $this->property('exclude-replies'),
+                                            "cache-duration" => $this->property('cache-duration')
                                             ]);
         } catch (Exception $ex) {
             return [];
