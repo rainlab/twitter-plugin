@@ -33,7 +33,7 @@ class LatestTweet extends ComponentBase
                  'default'           => "No",
                  'options'           => ["Yes", "No"]
             ],
-			'cache-duration' => [
+            'cache-duration' => [
                  'title'             => 'Cache Duration in Minutes',
                  'description'       => 'Cache Duration of Twitter Feed calls in minutes',
                  'type'              => 'string',
