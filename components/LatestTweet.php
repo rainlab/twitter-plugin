@@ -37,7 +37,7 @@ class LatestTweet extends ComponentBase
                  'title'             => 'Cache Duration in Minutes',
                  'description'       => 'Cache Duration of Twitter Feed calls in minutes',
                  'type'              => 'string',
-                 'default'           => 10,
+                 'default'           => 2,
                  'validationPattern' => '^[1-9][0-9]*$',
                  'validationMessage' => 'The cache duration limit attribute must be an integer and above 0.'
             ]

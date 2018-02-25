@@ -80,7 +80,7 @@ class TwitterClient
                 'screen_name'      => $userData['screen_name'],
                 'exclude_replies'  => (!isset($params["exclude-replies"]) &&
                                         $params["exclude-replies"] == 'No' ? false : true),
-                'cache-duration'  => (!isset($params["cache-duration"]) ? 10 : $params["cache-duration"]) 
+                'cache-duration'  => (!isset($params["cache-duration"]) ? 2 : $params["cache-duration"]) 
             )
         ));
 
