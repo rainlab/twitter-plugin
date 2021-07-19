@@ -3,3 +3,4 @@
 1.0.3: Minor improvements to the code.
 1.0.4: Adds a new latest tweet component.
 1.0.5: Fixes bug when setting component parameters.
+1.0.6: Added cache duration schedule for latest tweets (default 2 mins).
