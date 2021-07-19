@@ -1,33 +1,31 @@
 <?php namespace RainLab\Twitter;
 
-/**
- * The plugin.php file (called the plugin initialization script) defines the plugin information class.
- */
-
 use System\Classes\PluginBase;
 
+/**
+ * Plugin class is the plugin initialization script that defines the plugin information.
+ */
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
-            'name'        => 'Twitter',
+            'name' => 'Twitter',
             'description' => 'Provides integration with Twitter.',
-            'author'      => 'Alexey Bobkov, Samuel Georges',
-            'icon'        => 'icon-twitter'
+            'author' => 'Alexey Bobkov, Samuel Georges',
+            'icon' => 'icon-twitter'
         ];
     }
 
     public function registerComponents()
     {
         return [
-            'RainLab\Twitter\Components\Favorites'        => 'twitterFavorites',
-            'RainLab\Twitter\Components\FollowButton'     => 'followButton',
-            'RainLab\Twitter\Components\TweetButton'      => 'tweetButton',
-            'RainLab\Twitter\Components\EmbedTweet'       => 'embedTweet',
-            'RainLab\Twitter\Components\EmbedTimeline'    => 'embedTimeline',
-            'RainLab\Twitter\Components\LatestTweet'      => 'latestTweet'
+            \RainLab\Twitter\Components\Favorites::class => 'twitterFavorites',
+            \RainLab\Twitter\Components\FollowButton::class => 'followButton',
+            \RainLab\Twitter\Components\TweetButton::class => 'tweetButton',
+            \RainLab\Twitter\Components\EmbedTweet::class => 'embedTweet',
+            \RainLab\Twitter\Components\EmbedTimeline::class => 'embedTimeline',
+            \RainLab\Twitter\Components\LatestTweet::class => 'latestTweet'
         ];
     }
 
@@ -38,7 +36,7 @@ class Plugin extends PluginBase
                 'label'       => 'Twitter',
                 'icon'        => 'icon-twitter',
                 'description' => 'Configure Twitter authentication parameters.',
-                'class'       => 'RainLab\Twitter\Models\Settings',
+                'class'       => \RainLab\Twitter\Models\Settings::class,
                 'order'       => 600
             ]
         ];

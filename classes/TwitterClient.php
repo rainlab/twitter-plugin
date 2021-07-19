@@ -1,11 +1,14 @@
 <?php namespace RainLab\Twitter\Classes;
 
 use Cache;
-use tmhOAuth;
+use Carbon\Carbon;
 use RainLab\Twitter\Models\Settings;
 use ApplicationException;
-use Carbon\Carbon;
+use tmhOAuth;
 
+/**
+ * TwitterClient
+ */
 class TwitterClient
 {
     use \October\Rain\Support\Traits\Singleton;
@@ -18,14 +21,15 @@ class TwitterClient
     protected function init()
     {
         $settings = Settings::instance();
-        if (!strlen($settings->api_key))
+        if (!strlen($settings->api_key)) {
             throw new ApplicationException('Twitter API access is not configured. Please configure it on the System / Settings / Twitter page.');
+        }
 
         $this->client = new tmhOAuth([
-            'consumer_key'        => $settings->api_key,
-            'consumer_secret'     => $settings->api_secret,
-            'token'               => $settings->access_token,
-            'secret'              => $settings->access_token_secret,
+            'consumer_key' => $settings->api_key,
+            'consumer_secret' => $settings->api_secret,
+            'token' => $settings->access_token,
+            'secret' => $settings->access_token_secret,
             'curl_ssl_verifypeer' => false
         ]);
     }
@@ -38,16 +42,18 @@ class TwitterClient
     {
         $cacheKey = 'rainlab-twitter-user-data';
         $cached = Cache::get($cacheKey, false);
-        if ($cached && ($unserialized = @unserialize($cached)) !== false)
+        if ($cached && ($unserialized = @unserialize($cached)) !== false) {
             return $unserialized;
+        }
 
         $code = $this->client->user_request([
             'url' => $this->client->url('1.1/account/verify_credentials')
         ]);
 
         if ($code <> 200) {
-            if ($code == 429)
+            if ($code == 429) {
                 throw new ApplicationException('Exceeded Twitter API rate limit');
+            }
 
             throw new ApplicationException('Error requesting Twitter API: '.$this->client->response['error']);
         }
@@ -59,13 +65,15 @@ class TwitterClient
         return $result;
     }
 
+    /**
+     * getLatestTweet
+     */
     public function getLatestTweet($params)
     {
         $cacheKey = 'rainlab-twitter-latest';
         $cached = Cache::get($cacheKey, false);
 
-        if ($cached && ($unserialized = @unserialize($cached)) !== false)
-        {
+        if ($cached && ($unserialized = @unserialize($cached)) !== false) {
             return $unserialized;
         }
 
@@ -73,33 +81,33 @@ class TwitterClient
 
         $userData = $obj->getUserData();
 
-        $code = $obj->client->user_request(array(
-            'url'    => $obj->client->url('1.1/statuses/user_timeline'),
-            'params' => array(
-                'count'            => $params["tweet-limit"],
-                'screen_name'      => $userData['screen_name'],
-                'exclude_replies'  => (!isset($params["exclude-replies"]) && $params["exclude-replies"] == 'No' ? false : true),
-                'cache-duration'  => (!isset($params["cache-duration"]) ? 2 : $params["cache-duration"])
-            )
-        ));
+        $excludeReplies = (!isset($params["exclude-replies"]) && $params["exclude-replies"] == 'No' ? false : true);
 
-        if ($code <> 200)
-        {
+        $code = $obj->client->user_request([
+            'url' => $obj->client->url('1.1/statuses/user_timeline'),
+            'params' => [
+                'count' => $params['tweet-limit'],
+                'screen_name' => $userData['screen_name'],
+                'exclude_replies' => $excludeReplies
+            ]
+        ]);
+
+        if ($code <> 200) {
              throw new ApplicationException('Error requesting Twitter API: '.$obj->client->response['error']);
         }
 
         $result = json_decode($obj->client->response['response'], true);
-        foreach ($result as &$message)
-        {
+        foreach ($result as &$message) {
             $text = $message['text'];
             $text = preg_replace('/\@\w+/', '<span class="name">$0</span>', $text);
             $text = preg_replace('/\#\w+/', '<span class="tag">$0</span>', $text);
             $message['text_processed'] = $obj->urlsToLinks($text);
         }
 
-        $expiresAt = Carbon::now()->addMinutes($params["cache-duration"]);
-
+        $cacheDuration = (!isset($params["cache-duration"]) ? 2 : $params["cache-duration"]);
+        $expiresAt = Carbon::now()->addMinutes($cacheDuration);
         Cache::put($cacheKey, serialize($result), $expiresAt);
+
         return $result;
     }
 
