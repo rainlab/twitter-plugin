@@ -1,6 +1,7 @@
-1.0.1: Initialize plugin.
-1.0.2: Adds Tweet Button, Follow Button, Embed Tweet and Embed Timeline components.
-1.0.3: Minor improvements to the code.
-1.0.4: Adds a new latest tweet component.
-1.0.5: Fixes bug when setting component parameters.
-1.0.6: Added cache duration schedule for latest tweets (default 2 mins).
+v1.0.1: Initialize plugin.
+v1.0.2: Adds Tweet Button, Follow Button, Embed Tweet and Embed Timeline components.
+v1.0.3: Minor improvements to the code.
+v1.0.4: Adds a new latest tweet component.
+v1.0.5: Fixes bug when setting component parameters.
+v1.0.6: Added cache duration schedule for latest tweets (default 2 mins).
+v1.0.7: Improves support with October v3

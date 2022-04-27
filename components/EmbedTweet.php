@@ -1,7 +1,7 @@
 <?php namespace RainLab\Twitter\Components;
 
 use Cms\Classes\ComponentBase;
-use Http;
+use October\Rain\Network\Http;
 
 class EmbedTweet extends ComponentBase
 {
@@ -87,11 +87,11 @@ class EmbedTweet extends ComponentBase
         $json = json_decode(Http::get('https://api.twitter.com/1/statuses/oembed.json', function($http){
             $http->data($this->getProperties());
         })->body);
-        
-        if (isset($json->html)) 
+
+        if (isset($json->html))
         {
             $html = $json->html;
-        } 
+        }
         else if (isset($json->errors))
         {
             $html = $json->errors[0]->message;
