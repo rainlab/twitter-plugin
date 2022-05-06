@@ -1,6 +1,6 @@
 # Twitter integration plugin
 
-This plugin adds Twitter integration features to the [October CMS](http://octobercms.com).
+This plugin adds Twitter integration features to the [October CMS](https://octobercms.com).
 
 This plugin allows you to add the following Components to your pages and layouts:
 
@@ -16,7 +16,7 @@ This plugin allows you to add the following Components to your pages and layouts
 
 Some features of Twitter use OAuth security. In order to use the plugin you need create a Twitter API application.
 
-1. Go to the [Twitter Developers website](https://apps.twitter.com/) to create a new application. You must be signed into Twitter in order to access the page.
+1. Go to the [Twitter Developers website](https://developer.twitter.com/en) to create a new application. You must be signed into Twitter in order to access the page.
 2. Click the Create New App button.
 3. Enter any application name, for example October Twitter Integration.
 4. Provide a description for the application.
@@ -44,7 +44,7 @@ You can manage the number of favorite messages with the component settings. If y
     <p class="author">
         <img src="{{ favorite.user.profile_image_url_https }}"/>
         <span>{{ favorite.user.name }}</span>
-        <a href="{{ 'http://twitter.com/'~favorite.user.screen_name }}">@{{ favorite.user.screen_name }}</a>
+        <a href="{{ 'https://twitter.com/'~favorite.user.screen_name }}">@{{ favorite.user.screen_name }}</a>
     </p>
 {% endfor %}
 ```
