@@ -1,6 +1,6 @@
 # Twitter integration plugin
 
-This plugin adds Twitter integration features to the [OctoberCMS](http://octobercms.com).
+This plugin adds Twitter integration features to the [October CMS](http://octobercms.com).
 
 This plugin allows you to add the following Components to your pages and layouts:
 
@@ -49,4 +49,4 @@ You can manage the number of favorite messages with the component settings. If y
 {% endfor %}
 ```
 
-See [Twitter favorites API documentation](https://dev.twitter.com/docs/api/1.1/get/favorites/list) for the information about available fields.
+See [Twitter favorites API documentation](https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/get-favorites-list) for the information about available fields.
